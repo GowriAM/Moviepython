@@ -1,0 +1,17 @@
+body{
+background-color:aqua;
+}
+.my_footer{
+    position:fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background_color:#f8f9fa;
+    height: 50px;
+    text-align: center;
+}
+
+.my_footer p{
+    padding-top:20px;
+    font-size:15px;
+}

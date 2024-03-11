@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<ul class="d-flex flex-row align-items-start justify-content-start">
+									<li class="nav-link"><a class="nav-link" href="{% url 'movieapp:index' %}">Home</a></li>
+									{% if user.is_authenticated %}
+									<li class="nav-link">Hello {{user.username}} </li>
+									<li class="nav-link"><a class="nav-link" href="actor/logout">Logout</a></li>
+									{% else %}
+									<li class="nav-link"><a class="nav-link" href="actor/register">Register</a></li>
+									<li class="nav-link"><a class="nav-link" href="actor/login">Login</a></li>
+									{% endif %}
+
+                                     <li class="nav-link"><a class="nav-link dropdown-toggle" href="{% url 'movieapp:index' %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                         Film
+                                     </a>
+                                     <ul class="dropdown-menu"
+                                    <li class="nav-link"><a class="dropdown-item" href="#">All Movies</a></li>
+                                    <li class="nav-link"><a class="dropdown-item" href="#">Bollywood</a></li>
+                                    <li class="nav-link"><a class="dropdown-item" href="#">Hollywood</a></li>
+                                    <li class="nav-link"><a class="dropdown-item" href="#">South Indian</a></li>
+                                    {% for cat in links %}
+                                     <li class="nav-link"><a class="dropdown-item" href="{{cat.get_url}}">{{cat.name}}</a></li>
+                                         {% endfor %}
+                                    </li>
+                                    </ul>
+								</ul>
+    </div>
+  </div>
+    <form class="d-flex" action="{% url 'movieapp:movie_search' %}" method="get">
+        {% csrf_token %}
+        <input class="form-control me-2" type="search" placeholder="Search" name="q" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+</nav>
